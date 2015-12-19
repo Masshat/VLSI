@@ -2,6 +2,8 @@ ENV_YAGLE = MBK_IN_LO=al; export MBK_IN_LO
 
 ENV_INIT = MBK_IN_LO=vst; export MBK_IN_LO
 
+all:cougar yagle proof druc
+
 cougar:
 	cougar -t nandlayout nand_al
 

@@ -1,20 +1,14 @@
 ENTITY nandf IS
   PORT (
-  i1 : in BIT;	-- i1
-  i2 : in BIT;	-- i2
-  vdd : in BIT;	-- vdd
-  vss : in BIT;	-- vss
-  nq : out BIT -- nq
+  i1 : in BIT;	
+  i2 : in BIT;	
+  vdd : in BIT;	
+  vss : in BIT;	
+  nq : out BIT 
   );
 END nandf;
 
-
--- Architecture Declaration
-
 ARCHITECTURE behavioural OF nandf IS
-
 BEGIN
-
 	nq<=i1 nand i2;
-
 END;
