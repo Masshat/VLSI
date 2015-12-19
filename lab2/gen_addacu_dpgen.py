@@ -11,6 +11,7 @@ def StratusScript ():
   instance.Interface ()
   instance.Netlist   ()
   instance.Layout ()
+  instance.View ()
     
   instance.Save (PHYSICAL)
   

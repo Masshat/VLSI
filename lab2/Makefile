@@ -1,4 +1,4 @@
-N ?= 32
+N ?= 64
 
 
 all : mux full_adder adder accu addacu
