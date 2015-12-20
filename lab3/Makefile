@@ -1,14 +1,16 @@
 ENV_YAGLE = MBK_IN_LO=al; export MBK_IN_LO
+ENV_COUGAR = MBK_IN_PH=ap; export MBK_IN_LO; \
+		MBK_OUT_LO=al; export MBK_OUT_LO
 
 ENV_INIT = MBK_IN_LO=vst; export MBK_IN_LO
 
-all:cougar yagle proof druc
+all:cougar Yagle proof druc
 
 cougar:
-	cougar -t nandlayout nand_al
+	 $(ENV_COUGAR); cougar -t nandlayout nand_al
 
-yagle:
-	$(ENV_YAGLE); ~encadr/yagle -s nand_al nand_yagle
+Yagle:
+	$(ENV_YAGLE); ./yagle -s nand_al nand_yagle
 	$(ENV_INIT)
 
 proof:
