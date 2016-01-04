@@ -1,0 +1,1936 @@
+
+-- =======================================================================
+-- Coriolis Structural VHDL Driver
+-- Generated on déc. 19, 2015, 17:14
+-- 
+-- To be interoperable with Alliance, it uses it's special VHDL subset.
+-- ("man vhdl" under Alliance for more informations)
+-- =======================================================================
+
+entity standard2 is
+  port ( clk : in bit
+       ; sel : in bit
+       ; a   : in bit_vector(63 downto 0)
+       ; b   : in bit_vector(63 downto 0)
+       ; s   : out bit_vector(63 downto 0)
+       ; vdd : in bit
+       ; vss : in bit
+       );
+end standard2;
+
+architecture structural of standard2 is
+
+  component adder_64
+    port ( cin  : in bit
+         ; i0   : in bit_vector(63 downto 0)
+         ; i1   : in bit_vector(63 downto 0)
+         ; cout : out bit
+         ; q    : out bit_vector(63 downto 0)
+         ; vdd  : in bit
+         ; vss  : in bit
+         );
+  end component;
+
+  component buf_x4
+    port ( i   : in bit
+         ; q   : out bit
+         ; vdd : in bit
+         ; vss : in bit
+         );
+  end component;
+
+  component mux_64
+    port ( cmd : in bit
+         ; i0  : in bit_vector(63 downto 0)
+         ; i1  : in bit_vector(63 downto 0)
+         ; s   : out bit_vector(63 downto 0)
+         ; vdd : in bit
+         ; vss : in bit
+         );
+  end component;
+
+  component accu_64
+    port ( ck  : in bit
+         ; i   : in bit_vector(63 downto 0)
+         ; q   : out bit_vector(63 downto 0)
+         ; vdd : in bit
+         ; vss : in bit
+         );
+  end component;
+
+  component tie_x0
+    port ( vdd : in bit
+         ; vss : in bit
+         );
+  end component;
+
+  component rowend_x0
+    port ( vdd : in bit
+         ; vss : in bit
+         );
+  end component;
+
+  signal adder_64_i1_full_adder_i0_ng    :  bit;
+  signal adder_64_i1_full_adder_i0_np_c  :  bit;
+  signal adder_64_i1_full_adder_i0_p     :  bit;
+  signal adder_64_i1_full_adder_i10_ng   :  bit;
+  signal adder_64_i1_full_adder_i10_np_c :  bit;
+  signal adder_64_i1_full_adder_i10_p    :  bit;
+  signal adder_64_i1_full_adder_i11_ng   :  bit;
+  signal adder_64_i1_full_adder_i11_np_c :  bit;
+  signal adder_64_i1_full_adder_i11_p    :  bit;
+  signal adder_64_i1_full_adder_i12_ng   :  bit;
+  signal adder_64_i1_full_adder_i12_np_c :  bit;
+  signal adder_64_i1_full_adder_i12_p    :  bit;
+  signal adder_64_i1_full_adder_i13_ng   :  bit;
+  signal adder_64_i1_full_adder_i13_np_c :  bit;
+  signal adder_64_i1_full_adder_i13_p    :  bit;
+  signal adder_64_i1_full_adder_i14_ng   :  bit;
+  signal adder_64_i1_full_adder_i14_np_c :  bit;
+  signal adder_64_i1_full_adder_i14_p    :  bit;
+  signal adder_64_i1_full_adder_i15_ng   :  bit;
+  signal adder_64_i1_full_adder_i15_np_c :  bit;
+  signal adder_64_i1_full_adder_i15_p    :  bit;
+  signal adder_64_i1_full_adder_i16_ng   :  bit;
+  signal adder_64_i1_full_adder_i16_np_c :  bit;
+  signal adder_64_i1_full_adder_i16_p    :  bit;
+  signal adder_64_i1_full_adder_i17_ng   :  bit;
+  signal adder_64_i1_full_adder_i17_np_c :  bit;
+  signal adder_64_i1_full_adder_i17_p    :  bit;
+  signal adder_64_i1_full_adder_i18_ng   :  bit;
+  signal adder_64_i1_full_adder_i18_np_c :  bit;
+  signal adder_64_i1_full_adder_i18_p    :  bit;
+  signal adder_64_i1_full_adder_i19_ng   :  bit;
+  signal adder_64_i1_full_adder_i19_np_c :  bit;
+  signal adder_64_i1_full_adder_i19_p    :  bit;
+  signal adder_64_i1_full_adder_i1_ng    :  bit;
+  signal adder_64_i1_full_adder_i1_np_c  :  bit;
+  signal adder_64_i1_full_adder_i1_p     :  bit;
+  signal adder_64_i1_full_adder_i20_ng   :  bit;
+  signal adder_64_i1_full_adder_i20_np_c :  bit;
+  signal adder_64_i1_full_adder_i20_p    :  bit;
+  signal adder_64_i1_full_adder_i21_ng   :  bit;
+  signal adder_64_i1_full_adder_i21_np_c :  bit;
+  signal adder_64_i1_full_adder_i21_p    :  bit;
+  signal adder_64_i1_full_adder_i22_ng   :  bit;
+  signal adder_64_i1_full_adder_i22_np_c :  bit;
+  signal adder_64_i1_full_adder_i22_p    :  bit;
+  signal adder_64_i1_full_adder_i23_ng   :  bit;
+  signal adder_64_i1_full_adder_i23_np_c :  bit;
+  signal adder_64_i1_full_adder_i23_p    :  bit;
+  signal adder_64_i1_full_adder_i24_ng   :  bit;
+  signal adder_64_i1_full_adder_i24_np_c :  bit;
+  signal adder_64_i1_full_adder_i24_p    :  bit;
+  signal adder_64_i1_full_adder_i25_ng   :  bit;
+  signal adder_64_i1_full_adder_i25_np_c :  bit;
+  signal adder_64_i1_full_adder_i25_p    :  bit;
+  signal adder_64_i1_full_adder_i26_ng   :  bit;
+  signal adder_64_i1_full_adder_i26_np_c :  bit;
+  signal adder_64_i1_full_adder_i26_p    :  bit;
+  signal adder_64_i1_full_adder_i27_ng   :  bit;
+  signal adder_64_i1_full_adder_i27_np_c :  bit;
+  signal adder_64_i1_full_adder_i27_p    :  bit;
+  signal adder_64_i1_full_adder_i28_ng   :  bit;
+  signal adder_64_i1_full_adder_i28_np_c :  bit;
+  signal adder_64_i1_full_adder_i28_p    :  bit;
+  signal adder_64_i1_full_adder_i29_ng   :  bit;
+  signal adder_64_i1_full_adder_i29_np_c :  bit;
+  signal adder_64_i1_full_adder_i29_p    :  bit;
+  signal adder_64_i1_full_adder_i2_ng    :  bit;
+  signal adder_64_i1_full_adder_i2_np_c  :  bit;
+  signal adder_64_i1_full_adder_i2_p     :  bit;
+  signal adder_64_i1_full_adder_i30_ng   :  bit;
+  signal adder_64_i1_full_adder_i30_np_c :  bit;
+  signal adder_64_i1_full_adder_i30_p    :  bit;
+  signal adder_64_i1_full_adder_i31_ng   :  bit;
+  signal adder_64_i1_full_adder_i31_np_c :  bit;
+  signal adder_64_i1_full_adder_i31_p    :  bit;
+  signal adder_64_i1_full_adder_i32_ng   :  bit;
+  signal adder_64_i1_full_adder_i32_np_c :  bit;
+  signal adder_64_i1_full_adder_i32_p    :  bit;
+  signal adder_64_i1_full_adder_i33_ng   :  bit;
+  signal adder_64_i1_full_adder_i33_np_c :  bit;
+  signal adder_64_i1_full_adder_i33_p    :  bit;
+  signal adder_64_i1_full_adder_i34_ng   :  bit;
+  signal adder_64_i1_full_adder_i34_np_c :  bit;
+  signal adder_64_i1_full_adder_i34_p    :  bit;
+  signal adder_64_i1_full_adder_i35_ng   :  bit;
+  signal adder_64_i1_full_adder_i35_np_c :  bit;
+  signal adder_64_i1_full_adder_i35_p    :  bit;
+  signal adder_64_i1_full_adder_i36_ng   :  bit;
+  signal adder_64_i1_full_adder_i36_np_c :  bit;
+  signal adder_64_i1_full_adder_i36_p    :  bit;
+  signal adder_64_i1_full_adder_i37_ng   :  bit;
+  signal adder_64_i1_full_adder_i37_np_c :  bit;
+  signal adder_64_i1_full_adder_i37_p    :  bit;
+  signal adder_64_i1_full_adder_i38_ng   :  bit;
+  signal adder_64_i1_full_adder_i38_np_c :  bit;
+  signal adder_64_i1_full_adder_i38_p    :  bit;
+  signal adder_64_i1_full_adder_i39_ng   :  bit;
+  signal adder_64_i1_full_adder_i39_np_c :  bit;
+  signal adder_64_i1_full_adder_i39_p    :  bit;
+  signal adder_64_i1_full_adder_i3_ng    :  bit;
+  signal adder_64_i1_full_adder_i3_np_c  :  bit;
+  signal adder_64_i1_full_adder_i3_p     :  bit;
+  signal adder_64_i1_full_adder_i40_ng   :  bit;
+  signal adder_64_i1_full_adder_i40_np_c :  bit;
+  signal adder_64_i1_full_adder_i40_p    :  bit;
+  signal adder_64_i1_full_adder_i41_ng   :  bit;
+  signal adder_64_i1_full_adder_i41_np_c :  bit;
+  signal adder_64_i1_full_adder_i41_p    :  bit;
+  signal adder_64_i1_full_adder_i42_ng   :  bit;
+  signal adder_64_i1_full_adder_i42_np_c :  bit;
+  signal adder_64_i1_full_adder_i42_p    :  bit;
+  signal adder_64_i1_full_adder_i43_ng   :  bit;
+  signal adder_64_i1_full_adder_i43_np_c :  bit;
+  signal adder_64_i1_full_adder_i43_p    :  bit;
+  signal adder_64_i1_full_adder_i44_ng   :  bit;
+  signal adder_64_i1_full_adder_i44_np_c :  bit;
+  signal adder_64_i1_full_adder_i44_p    :  bit;
+  signal adder_64_i1_full_adder_i45_ng   :  bit;
+  signal adder_64_i1_full_adder_i45_np_c :  bit;
+  signal adder_64_i1_full_adder_i45_p    :  bit;
+  signal adder_64_i1_full_adder_i46_ng   :  bit;
+  signal adder_64_i1_full_adder_i46_np_c :  bit;
+  signal adder_64_i1_full_adder_i46_p    :  bit;
+  signal adder_64_i1_full_adder_i47_ng   :  bit;
+  signal adder_64_i1_full_adder_i47_np_c :  bit;
+  signal adder_64_i1_full_adder_i47_p    :  bit;
+  signal adder_64_i1_full_adder_i48_ng   :  bit;
+  signal adder_64_i1_full_adder_i48_np_c :  bit;
+  signal adder_64_i1_full_adder_i48_p    :  bit;
+  signal adder_64_i1_full_adder_i49_ng   :  bit;
+  signal adder_64_i1_full_adder_i49_np_c :  bit;
+  signal adder_64_i1_full_adder_i49_p    :  bit;
+  signal adder_64_i1_full_adder_i4_ng    :  bit;
+  signal adder_64_i1_full_adder_i4_np_c  :  bit;
+  signal adder_64_i1_full_adder_i4_p     :  bit;
+  signal adder_64_i1_full_adder_i50_ng   :  bit;
+  signal adder_64_i1_full_adder_i50_np_c :  bit;
+  signal adder_64_i1_full_adder_i50_p    :  bit;
+  signal adder_64_i1_full_adder_i51_ng   :  bit;
+  signal adder_64_i1_full_adder_i51_np_c :  bit;
+  signal adder_64_i1_full_adder_i51_p    :  bit;
+  signal adder_64_i1_full_adder_i52_ng   :  bit;
+  signal adder_64_i1_full_adder_i52_np_c :  bit;
+  signal adder_64_i1_full_adder_i52_p    :  bit;
+  signal adder_64_i1_full_adder_i53_ng   :  bit;
+  signal adder_64_i1_full_adder_i53_np_c :  bit;
+  signal adder_64_i1_full_adder_i53_p    :  bit;
+  signal adder_64_i1_full_adder_i54_ng   :  bit;
+  signal adder_64_i1_full_adder_i54_np_c :  bit;
+  signal adder_64_i1_full_adder_i54_p    :  bit;
+  signal adder_64_i1_full_adder_i55_ng   :  bit;
+  signal adder_64_i1_full_adder_i55_np_c :  bit;
+  signal adder_64_i1_full_adder_i55_p    :  bit;
+  signal adder_64_i1_full_adder_i56_ng   :  bit;
+  signal adder_64_i1_full_adder_i56_np_c :  bit;
+  signal adder_64_i1_full_adder_i56_p    :  bit;
+  signal adder_64_i1_full_adder_i57_ng   :  bit;
+  signal adder_64_i1_full_adder_i57_np_c :  bit;
+  signal adder_64_i1_full_adder_i57_p    :  bit;
+  signal adder_64_i1_full_adder_i58_ng   :  bit;
+  signal adder_64_i1_full_adder_i58_np_c :  bit;
+  signal adder_64_i1_full_adder_i58_p    :  bit;
+  signal adder_64_i1_full_adder_i59_ng   :  bit;
+  signal adder_64_i1_full_adder_i59_np_c :  bit;
+  signal adder_64_i1_full_adder_i59_p    :  bit;
+  signal adder_64_i1_full_adder_i5_ng    :  bit;
+  signal adder_64_i1_full_adder_i5_np_c  :  bit;
+  signal adder_64_i1_full_adder_i5_p     :  bit;
+  signal adder_64_i1_full_adder_i60_ng   :  bit;
+  signal adder_64_i1_full_adder_i60_np_c :  bit;
+  signal adder_64_i1_full_adder_i60_p    :  bit;
+  signal adder_64_i1_full_adder_i61_ng   :  bit;
+  signal adder_64_i1_full_adder_i61_np_c :  bit;
+  signal adder_64_i1_full_adder_i61_p    :  bit;
+  signal adder_64_i1_full_adder_i62_ng   :  bit;
+  signal adder_64_i1_full_adder_i62_np_c :  bit;
+  signal adder_64_i1_full_adder_i62_p    :  bit;
+  signal adder_64_i1_full_adder_i63_ng   :  bit;
+  signal adder_64_i1_full_adder_i63_np_c :  bit;
+  signal adder_64_i1_full_adder_i63_p    :  bit;
+  signal adder_64_i1_full_adder_i6_ng    :  bit;
+  signal adder_64_i1_full_adder_i6_np_c  :  bit;
+  signal adder_64_i1_full_adder_i6_p     :  bit;
+  signal adder_64_i1_full_adder_i7_ng    :  bit;
+  signal adder_64_i1_full_adder_i7_np_c  :  bit;
+  signal adder_64_i1_full_adder_i7_p     :  bit;
+  signal adder_64_i1_full_adder_i8_ng    :  bit;
+  signal adder_64_i1_full_adder_i8_np_c  :  bit;
+  signal adder_64_i1_full_adder_i8_p     :  bit;
+  signal adder_64_i1_full_adder_i9_ng    :  bit;
+  signal adder_64_i1_full_adder_i9_np_c  :  bit;
+  signal adder_64_i1_full_adder_i9_p     :  bit;
+  signal blockagenet                     :  bit;
+  signal unused                          :  bit;
+  signal adder_64_i1_r                   :  bit_vector(62 downto 0);
+  signal out_alu                         :  bit_vector(63 downto 0);
+  signal out_mx                          :  bit_vector(63 downto 0);
+  signal out_reg                         :  bit_vector(63 downto 0);
+
+
+begin
+
+  feed_13 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_12 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_11 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_10 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_9 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_8 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_7 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_6 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_5 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_4 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_3 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_2 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_1 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_0 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_14 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_15 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_16 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_17 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_18 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_19 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_20 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_21 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_22 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_23 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_24 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_25 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_26 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_27 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_28 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_29 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_30 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_31 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_32 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_33 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_34 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_35 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_36 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_37 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_38 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_39 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_40 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_41 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_42 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_43 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_44 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_45 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_46 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_47 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_48 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_49 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_50 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_51 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_52 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_53 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_54 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_118 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_117 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_116 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_115 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_114 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_113 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_112 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_111 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_110 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_109 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_108 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_107 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_106 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_105 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_104 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_103 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_102 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_101 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_100 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_99 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_98 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_97 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_96 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_95 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_94 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_55 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_56 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_57 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_58 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_59 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_60 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_61 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_62 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_63 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_64 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_65 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_66 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_67 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_68 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_69 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_70 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_71 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_72 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_73 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_74 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_75 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_76 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_77 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_78 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_79 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_80 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_81 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_82 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_83 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_84 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_85 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_86 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_87 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_88 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_89 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_90 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_91 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_92 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_93 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_182 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_181 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_180 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_179 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_178 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_177 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_176 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_175 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_174 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_173 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_172 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_171 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_170 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_169 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_168 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_167 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_166 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_165 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_164 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_163 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_162 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_161 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_160 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_159 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_158 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_157 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_156 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_155 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_154 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_153 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_152 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_151 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_150 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_149 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_148 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_147 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_146 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_145 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_144 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_143 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_142 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_141 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_140 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_139 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_138 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_137 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_136 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_135 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_134 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_133 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_132 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_131 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_130 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_129 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_128 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_127 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_126 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_125 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_124 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_123 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_122 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_121 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_120 : rowend_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_119 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_236 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_235 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_234 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_233 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_232 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_231 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_230 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_229 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_228 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_227 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_226 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_225 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_224 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_223 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_222 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_221 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_220 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_219 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_218 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_217 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_216 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_215 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_214 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_213 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_212 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_211 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_210 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_209 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_208 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_207 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_206 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_205 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_204 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_203 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_202 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_201 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_200 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_199 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_198 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_197 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_196 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_195 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_194 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_193 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_192 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_191 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_190 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_189 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_188 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_187 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_186 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_185 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_184 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  feed_183 : tie_x0
+  port map ( vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i13 : buf_x4
+  port map ( i   => out_reg(10)
+           , q   => s(10)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i14 : buf_x4
+  port map ( i   => out_reg(11)
+           , q   => s(11)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i15 : buf_x4
+  port map ( i   => out_reg(12)
+           , q   => s(12)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i16 : buf_x4
+  port map ( i   => out_reg(13)
+           , q   => s(13)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i17 : buf_x4
+  port map ( i   => out_reg(14)
+           , q   => s(14)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i18 : buf_x4
+  port map ( i   => out_reg(15)
+           , q   => s(15)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i19 : buf_x4
+  port map ( i   => out_reg(16)
+           , q   => s(16)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i20 : buf_x4
+  port map ( i   => out_reg(17)
+           , q   => s(17)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i41 : buf_x4
+  port map ( i   => out_reg(38)
+           , q   => s(38)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i42 : buf_x4
+  port map ( i   => out_reg(39)
+           , q   => s(39)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i53 : buf_x4
+  port map ( i   => out_reg(50)
+           , q   => s(50)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i52 : buf_x4
+  port map ( i   => out_reg(49)
+           , q   => s(49)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i51 : buf_x4
+  port map ( i   => out_reg(48)
+           , q   => s(48)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i50 : buf_x4
+  port map ( i   => out_reg(47)
+           , q   => s(47)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i49 : buf_x4
+  port map ( i   => out_reg(46)
+           , q   => s(46)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i48 : buf_x4
+  port map ( i   => out_reg(45)
+           , q   => s(45)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i47 : buf_x4
+  port map ( i   => out_reg(44)
+           , q   => s(44)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i46 : buf_x4
+  port map ( i   => out_reg(43)
+           , q   => s(43)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i45 : buf_x4
+  port map ( i   => out_reg(42)
+           , q   => s(42)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i44 : buf_x4
+  port map ( i   => out_reg(41)
+           , q   => s(41)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i43 : buf_x4
+  port map ( i   => out_reg(40)
+           , q   => s(40)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i12 : buf_x4
+  port map ( i   => out_reg(9)
+           , q   => s(9)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i11 : buf_x4
+  port map ( i   => out_reg(8)
+           , q   => s(8)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  mux_64_i0 : mux_64
+  port map ( cmd => sel
+           , i0  => a(63 downto 0)
+           , i1  => out_reg(63 downto 0)
+           , s   => out_mx(63 downto 0)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  accu_64_i2 : accu_64
+  port map ( ck  => clk
+           , i   => out_alu(63 downto 0)
+           , q   => out_reg(63 downto 0)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i3 : buf_x4
+  port map ( i   => out_reg(0)
+           , q   => s(0)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i4 : buf_x4
+  port map ( i   => out_reg(1)
+           , q   => s(1)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i5 : buf_x4
+  port map ( i   => out_reg(2)
+           , q   => s(2)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i6 : buf_x4
+  port map ( i   => out_reg(3)
+           , q   => s(3)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i7 : buf_x4
+  port map ( i   => out_reg(4)
+           , q   => s(4)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i8 : buf_x4
+  port map ( i   => out_reg(5)
+           , q   => s(5)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i9 : buf_x4
+  port map ( i   => out_reg(6)
+           , q   => s(6)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i10 : buf_x4
+  port map ( i   => out_reg(7)
+           , q   => s(7)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i21 : buf_x4
+  port map ( i   => out_reg(18)
+           , q   => s(18)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  adder_64_i1 : adder_64
+  port map ( cin  => vss
+           , i0   => out_mx(63 downto 0)
+           , i1   => b(63 downto 0)
+           , cout => unused
+           , q    => out_alu(63 downto 0)
+           , vdd  => vdd
+           , vss  => vss
+           );
+
+  buf_x4_i54 : buf_x4
+  port map ( i   => out_reg(51)
+           , q   => s(51)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i55 : buf_x4
+  port map ( i   => out_reg(52)
+           , q   => s(52)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i56 : buf_x4
+  port map ( i   => out_reg(53)
+           , q   => s(53)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i57 : buf_x4
+  port map ( i   => out_reg(54)
+           , q   => s(54)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i58 : buf_x4
+  port map ( i   => out_reg(55)
+           , q   => s(55)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i59 : buf_x4
+  port map ( i   => out_reg(56)
+           , q   => s(56)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i60 : buf_x4
+  port map ( i   => out_reg(57)
+           , q   => s(57)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i61 : buf_x4
+  port map ( i   => out_reg(58)
+           , q   => s(58)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i62 : buf_x4
+  port map ( i   => out_reg(59)
+           , q   => s(59)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i63 : buf_x4
+  port map ( i   => out_reg(60)
+           , q   => s(60)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i64 : buf_x4
+  port map ( i   => out_reg(61)
+           , q   => s(61)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i65 : buf_x4
+  port map ( i   => out_reg(62)
+           , q   => s(62)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i66 : buf_x4
+  port map ( i   => out_reg(63)
+           , q   => s(63)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i40 : buf_x4
+  port map ( i   => out_reg(37)
+           , q   => s(37)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i39 : buf_x4
+  port map ( i   => out_reg(36)
+           , q   => s(36)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i38 : buf_x4
+  port map ( i   => out_reg(35)
+           , q   => s(35)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i37 : buf_x4
+  port map ( i   => out_reg(34)
+           , q   => s(34)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i36 : buf_x4
+  port map ( i   => out_reg(33)
+           , q   => s(33)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i35 : buf_x4
+  port map ( i   => out_reg(32)
+           , q   => s(32)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i34 : buf_x4
+  port map ( i   => out_reg(31)
+           , q   => s(31)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i33 : buf_x4
+  port map ( i   => out_reg(30)
+           , q   => s(30)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i32 : buf_x4
+  port map ( i   => out_reg(29)
+           , q   => s(29)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i31 : buf_x4
+  port map ( i   => out_reg(28)
+           , q   => s(28)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i30 : buf_x4
+  port map ( i   => out_reg(27)
+           , q   => s(27)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i29 : buf_x4
+  port map ( i   => out_reg(26)
+           , q   => s(26)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i22 : buf_x4
+  port map ( i   => out_reg(19)
+           , q   => s(19)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i23 : buf_x4
+  port map ( i   => out_reg(20)
+           , q   => s(20)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i24 : buf_x4
+  port map ( i   => out_reg(21)
+           , q   => s(21)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i25 : buf_x4
+  port map ( i   => out_reg(22)
+           , q   => s(22)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i26 : buf_x4
+  port map ( i   => out_reg(23)
+           , q   => s(23)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i27 : buf_x4
+  port map ( i   => out_reg(24)
+           , q   => s(24)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  buf_x4_i28 : buf_x4
+  port map ( i   => out_reg(25)
+           , q   => s(25)
+           , vdd => vdd
+           , vss => vss
+           );
+
+end structural;
+

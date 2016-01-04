@@ -1,0 +1,502 @@
+
+-- =======================================================================
+-- Coriolis Structural VHDL Driver
+-- Generated on déc. 19, 2015, 18:06
+-- 
+-- To be interoperable with Alliance, it uses it's special VHDL subset.
+-- ("man vhdl" under Alliance for more informations)
+-- =======================================================================
+
+entity datapath is
+  port ( clk : in bit
+       ; sel : in bit
+       ; a   : in bit_vector(63 downto 0)
+       ; b   : in bit_vector(63 downto 0)
+       ; s   : out bit_vector(63 downto 0)
+       ; vdd : in bit
+       ; vss : in bit
+       );
+end datapath;
+
+architecture structural of datapath is
+
+  component accudp
+    port ( ck  : in bit
+         ; wen : in bit
+         ; i0  : in bit_vector(63 downto 0)
+         ; q   : out bit_vector(63 downto 0)
+         ; vdd : in bit
+         ; vss : in bit
+         );
+  end component;
+
+  component adderdp
+    port ( add_sub : in bit
+         ; i0      : in bit_vector(63 downto 0)
+         ; i1      : in bit_vector(63 downto 0)
+         ; c30     : out bit
+         ; c31     : out bit
+         ; q       : out bit_vector(63 downto 0)
+         ; vdd     : in bit
+         ; vss     : in bit
+         );
+  end component;
+
+  component muxdp
+    port ( cmd : in bit
+         ; i0  : in bit_vector(63 downto 0)
+         ; i1  : in bit_vector(63 downto 0)
+         ; q   : out bit_vector(63 downto 0)
+         ; vdd : in bit
+         ; vss : in bit
+         );
+  end component;
+
+  component buffdp
+    port ( i0  : in bit_vector(63 downto 0)
+         ; q   : out bit_vector(63 downto 0)
+         ; vdd : in bit
+         ; vss : in bit
+         );
+  end component;
+
+  signal accudp_i1_ckx      :  bit;
+  signal accudp_i1_nckx     :  bit;
+  signal accudp_i1_nwenx    :  bit;
+  signal accudp_i1_wenx     :  bit;
+  signal adderdp_i2_gi_0_1  :  bit;
+  signal adderdp_i2_gi_0_10 :  bit;
+  signal adderdp_i2_gi_0_11 :  bit;
+  signal adderdp_i2_gi_0_12 :  bit;
+  signal adderdp_i2_gi_0_13 :  bit;
+  signal adderdp_i2_gi_0_14 :  bit;
+  signal adderdp_i2_gi_0_15 :  bit;
+  signal adderdp_i2_gi_0_16 :  bit;
+  signal adderdp_i2_gi_0_17 :  bit;
+  signal adderdp_i2_gi_0_18 :  bit;
+  signal adderdp_i2_gi_0_19 :  bit;
+  signal adderdp_i2_gi_0_2  :  bit;
+  signal adderdp_i2_gi_0_20 :  bit;
+  signal adderdp_i2_gi_0_21 :  bit;
+  signal adderdp_i2_gi_0_22 :  bit;
+  signal adderdp_i2_gi_0_23 :  bit;
+  signal adderdp_i2_gi_0_24 :  bit;
+  signal adderdp_i2_gi_0_25 :  bit;
+  signal adderdp_i2_gi_0_26 :  bit;
+  signal adderdp_i2_gi_0_27 :  bit;
+  signal adderdp_i2_gi_0_28 :  bit;
+  signal adderdp_i2_gi_0_29 :  bit;
+  signal adderdp_i2_gi_0_3  :  bit;
+  signal adderdp_i2_gi_0_30 :  bit;
+  signal adderdp_i2_gi_0_31 :  bit;
+  signal adderdp_i2_gi_0_32 :  bit;
+  signal adderdp_i2_gi_0_33 :  bit;
+  signal adderdp_i2_gi_0_34 :  bit;
+  signal adderdp_i2_gi_0_35 :  bit;
+  signal adderdp_i2_gi_0_36 :  bit;
+  signal adderdp_i2_gi_0_37 :  bit;
+  signal adderdp_i2_gi_0_38 :  bit;
+  signal adderdp_i2_gi_0_39 :  bit;
+  signal adderdp_i2_gi_0_4  :  bit;
+  signal adderdp_i2_gi_0_40 :  bit;
+  signal adderdp_i2_gi_0_41 :  bit;
+  signal adderdp_i2_gi_0_42 :  bit;
+  signal adderdp_i2_gi_0_43 :  bit;
+  signal adderdp_i2_gi_0_44 :  bit;
+  signal adderdp_i2_gi_0_45 :  bit;
+  signal adderdp_i2_gi_0_46 :  bit;
+  signal adderdp_i2_gi_0_47 :  bit;
+  signal adderdp_i2_gi_0_48 :  bit;
+  signal adderdp_i2_gi_0_49 :  bit;
+  signal adderdp_i2_gi_0_5  :  bit;
+  signal adderdp_i2_gi_0_50 :  bit;
+  signal adderdp_i2_gi_0_51 :  bit;
+  signal adderdp_i2_gi_0_52 :  bit;
+  signal adderdp_i2_gi_0_53 :  bit;
+  signal adderdp_i2_gi_0_54 :  bit;
+  signal adderdp_i2_gi_0_55 :  bit;
+  signal adderdp_i2_gi_0_56 :  bit;
+  signal adderdp_i2_gi_0_57 :  bit;
+  signal adderdp_i2_gi_0_58 :  bit;
+  signal adderdp_i2_gi_0_59 :  bit;
+  signal adderdp_i2_gi_0_6  :  bit;
+  signal adderdp_i2_gi_0_60 :  bit;
+  signal adderdp_i2_gi_0_61 :  bit;
+  signal adderdp_i2_gi_0_62 :  bit;
+  signal adderdp_i2_gi_0_63 :  bit;
+  signal adderdp_i2_gi_0_7  :  bit;
+  signal adderdp_i2_gi_0_8  :  bit;
+  signal adderdp_i2_gi_0_9  :  bit;
+  signal adderdp_i2_gi_1_11 :  bit;
+  signal adderdp_i2_gi_1_13 :  bit;
+  signal adderdp_i2_gi_1_15 :  bit;
+  signal adderdp_i2_gi_1_17 :  bit;
+  signal adderdp_i2_gi_1_19 :  bit;
+  signal adderdp_i2_gi_1_21 :  bit;
+  signal adderdp_i2_gi_1_23 :  bit;
+  signal adderdp_i2_gi_1_25 :  bit;
+  signal adderdp_i2_gi_1_27 :  bit;
+  signal adderdp_i2_gi_1_29 :  bit;
+  signal adderdp_i2_gi_1_3  :  bit;
+  signal adderdp_i2_gi_1_31 :  bit;
+  signal adderdp_i2_gi_1_33 :  bit;
+  signal adderdp_i2_gi_1_35 :  bit;
+  signal adderdp_i2_gi_1_37 :  bit;
+  signal adderdp_i2_gi_1_39 :  bit;
+  signal adderdp_i2_gi_1_41 :  bit;
+  signal adderdp_i2_gi_1_43 :  bit;
+  signal adderdp_i2_gi_1_45 :  bit;
+  signal adderdp_i2_gi_1_47 :  bit;
+  signal adderdp_i2_gi_1_49 :  bit;
+  signal adderdp_i2_gi_1_5  :  bit;
+  signal adderdp_i2_gi_1_51 :  bit;
+  signal adderdp_i2_gi_1_53 :  bit;
+  signal adderdp_i2_gi_1_55 :  bit;
+  signal adderdp_i2_gi_1_57 :  bit;
+  signal adderdp_i2_gi_1_59 :  bit;
+  signal adderdp_i2_gi_1_61 :  bit;
+  signal adderdp_i2_gi_1_63 :  bit;
+  signal adderdp_i2_gi_1_7  :  bit;
+  signal adderdp_i2_gi_1_9  :  bit;
+  signal adderdp_i2_gi_2_10 :  bit;
+  signal adderdp_i2_gi_2_11 :  bit;
+  signal adderdp_i2_gi_2_14 :  bit;
+  signal adderdp_i2_gi_2_15 :  bit;
+  signal adderdp_i2_gi_2_18 :  bit;
+  signal adderdp_i2_gi_2_19 :  bit;
+  signal adderdp_i2_gi_2_22 :  bit;
+  signal adderdp_i2_gi_2_23 :  bit;
+  signal adderdp_i2_gi_2_26 :  bit;
+  signal adderdp_i2_gi_2_27 :  bit;
+  signal adderdp_i2_gi_2_30 :  bit;
+  signal adderdp_i2_gi_2_31 :  bit;
+  signal adderdp_i2_gi_2_34 :  bit;
+  signal adderdp_i2_gi_2_35 :  bit;
+  signal adderdp_i2_gi_2_38 :  bit;
+  signal adderdp_i2_gi_2_39 :  bit;
+  signal adderdp_i2_gi_2_42 :  bit;
+  signal adderdp_i2_gi_2_43 :  bit;
+  signal adderdp_i2_gi_2_46 :  bit;
+  signal adderdp_i2_gi_2_47 :  bit;
+  signal adderdp_i2_gi_2_50 :  bit;
+  signal adderdp_i2_gi_2_51 :  bit;
+  signal adderdp_i2_gi_2_54 :  bit;
+  signal adderdp_i2_gi_2_55 :  bit;
+  signal adderdp_i2_gi_2_58 :  bit;
+  signal adderdp_i2_gi_2_59 :  bit;
+  signal adderdp_i2_gi_2_6  :  bit;
+  signal adderdp_i2_gi_2_62 :  bit;
+  signal adderdp_i2_gi_2_63 :  bit;
+  signal adderdp_i2_gi_2_7  :  bit;
+  signal adderdp_i2_gi_3_12 :  bit;
+  signal adderdp_i2_gi_3_13 :  bit;
+  signal adderdp_i2_gi_3_14 :  bit;
+  signal adderdp_i2_gi_3_15 :  bit;
+  signal adderdp_i2_gi_3_20 :  bit;
+  signal adderdp_i2_gi_3_21 :  bit;
+  signal adderdp_i2_gi_3_22 :  bit;
+  signal adderdp_i2_gi_3_23 :  bit;
+  signal adderdp_i2_gi_3_28 :  bit;
+  signal adderdp_i2_gi_3_29 :  bit;
+  signal adderdp_i2_gi_3_30 :  bit;
+  signal adderdp_i2_gi_3_31 :  bit;
+  signal adderdp_i2_gi_3_36 :  bit;
+  signal adderdp_i2_gi_3_37 :  bit;
+  signal adderdp_i2_gi_3_38 :  bit;
+  signal adderdp_i2_gi_3_39 :  bit;
+  signal adderdp_i2_gi_3_44 :  bit;
+  signal adderdp_i2_gi_3_45 :  bit;
+  signal adderdp_i2_gi_3_46 :  bit;
+  signal adderdp_i2_gi_3_47 :  bit;
+  signal adderdp_i2_gi_3_52 :  bit;
+  signal adderdp_i2_gi_3_53 :  bit;
+  signal adderdp_i2_gi_3_54 :  bit;
+  signal adderdp_i2_gi_3_55 :  bit;
+  signal adderdp_i2_gi_3_60 :  bit;
+  signal adderdp_i2_gi_3_61 :  bit;
+  signal adderdp_i2_gi_3_62 :  bit;
+  signal adderdp_i2_gi_3_63 :  bit;
+  signal adderdp_i2_gi_4_24 :  bit;
+  signal adderdp_i2_gi_4_25 :  bit;
+  signal adderdp_i2_gi_4_26 :  bit;
+  signal adderdp_i2_gi_4_27 :  bit;
+  signal adderdp_i2_gi_4_28 :  bit;
+  signal adderdp_i2_gi_4_29 :  bit;
+  signal adderdp_i2_gi_4_30 :  bit;
+  signal adderdp_i2_gi_4_31 :  bit;
+  signal adderdp_i2_gi_4_40 :  bit;
+  signal adderdp_i2_gi_4_41 :  bit;
+  signal adderdp_i2_gi_4_42 :  bit;
+  signal adderdp_i2_gi_4_43 :  bit;
+  signal adderdp_i2_gi_4_44 :  bit;
+  signal adderdp_i2_gi_4_45 :  bit;
+  signal adderdp_i2_gi_4_46 :  bit;
+  signal adderdp_i2_gi_4_47 :  bit;
+  signal adderdp_i2_gi_4_56 :  bit;
+  signal adderdp_i2_gi_4_57 :  bit;
+  signal adderdp_i2_gi_4_58 :  bit;
+  signal adderdp_i2_gi_4_59 :  bit;
+  signal adderdp_i2_gi_4_60 :  bit;
+  signal adderdp_i2_gi_4_61 :  bit;
+  signal adderdp_i2_gi_4_62 :  bit;
+  signal adderdp_i2_gi_4_63 :  bit;
+  signal adderdp_i2_gi_5_48 :  bit;
+  signal adderdp_i2_gi_5_49 :  bit;
+  signal adderdp_i2_gi_5_50 :  bit;
+  signal adderdp_i2_gi_5_51 :  bit;
+  signal adderdp_i2_gi_5_52 :  bit;
+  signal adderdp_i2_gi_5_53 :  bit;
+  signal adderdp_i2_gi_5_54 :  bit;
+  signal adderdp_i2_gi_5_55 :  bit;
+  signal adderdp_i2_gi_5_56 :  bit;
+  signal adderdp_i2_gi_5_57 :  bit;
+  signal adderdp_i2_gi_5_58 :  bit;
+  signal adderdp_i2_gi_5_59 :  bit;
+  signal adderdp_i2_gi_5_60 :  bit;
+  signal adderdp_i2_gi_5_61 :  bit;
+  signal adderdp_i2_gi_5_62 :  bit;
+  signal adderdp_i2_gi_5_63 :  bit;
+  signal adderdp_i2_pi_0_1  :  bit;
+  signal adderdp_i2_pi_0_10 :  bit;
+  signal adderdp_i2_pi_0_11 :  bit;
+  signal adderdp_i2_pi_0_12 :  bit;
+  signal adderdp_i2_pi_0_13 :  bit;
+  signal adderdp_i2_pi_0_14 :  bit;
+  signal adderdp_i2_pi_0_15 :  bit;
+  signal adderdp_i2_pi_0_16 :  bit;
+  signal adderdp_i2_pi_0_17 :  bit;
+  signal adderdp_i2_pi_0_18 :  bit;
+  signal adderdp_i2_pi_0_19 :  bit;
+  signal adderdp_i2_pi_0_2  :  bit;
+  signal adderdp_i2_pi_0_20 :  bit;
+  signal adderdp_i2_pi_0_21 :  bit;
+  signal adderdp_i2_pi_0_22 :  bit;
+  signal adderdp_i2_pi_0_23 :  bit;
+  signal adderdp_i2_pi_0_24 :  bit;
+  signal adderdp_i2_pi_0_25 :  bit;
+  signal adderdp_i2_pi_0_26 :  bit;
+  signal adderdp_i2_pi_0_27 :  bit;
+  signal adderdp_i2_pi_0_28 :  bit;
+  signal adderdp_i2_pi_0_29 :  bit;
+  signal adderdp_i2_pi_0_3  :  bit;
+  signal adderdp_i2_pi_0_30 :  bit;
+  signal adderdp_i2_pi_0_31 :  bit;
+  signal adderdp_i2_pi_0_32 :  bit;
+  signal adderdp_i2_pi_0_33 :  bit;
+  signal adderdp_i2_pi_0_34 :  bit;
+  signal adderdp_i2_pi_0_35 :  bit;
+  signal adderdp_i2_pi_0_36 :  bit;
+  signal adderdp_i2_pi_0_37 :  bit;
+  signal adderdp_i2_pi_0_38 :  bit;
+  signal adderdp_i2_pi_0_39 :  bit;
+  signal adderdp_i2_pi_0_4  :  bit;
+  signal adderdp_i2_pi_0_40 :  bit;
+  signal adderdp_i2_pi_0_41 :  bit;
+  signal adderdp_i2_pi_0_42 :  bit;
+  signal adderdp_i2_pi_0_43 :  bit;
+  signal adderdp_i2_pi_0_44 :  bit;
+  signal adderdp_i2_pi_0_45 :  bit;
+  signal adderdp_i2_pi_0_46 :  bit;
+  signal adderdp_i2_pi_0_47 :  bit;
+  signal adderdp_i2_pi_0_48 :  bit;
+  signal adderdp_i2_pi_0_49 :  bit;
+  signal adderdp_i2_pi_0_5  :  bit;
+  signal adderdp_i2_pi_0_50 :  bit;
+  signal adderdp_i2_pi_0_51 :  bit;
+  signal adderdp_i2_pi_0_52 :  bit;
+  signal adderdp_i2_pi_0_53 :  bit;
+  signal adderdp_i2_pi_0_54 :  bit;
+  signal adderdp_i2_pi_0_55 :  bit;
+  signal adderdp_i2_pi_0_56 :  bit;
+  signal adderdp_i2_pi_0_57 :  bit;
+  signal adderdp_i2_pi_0_58 :  bit;
+  signal adderdp_i2_pi_0_59 :  bit;
+  signal adderdp_i2_pi_0_6  :  bit;
+  signal adderdp_i2_pi_0_60 :  bit;
+  signal adderdp_i2_pi_0_61 :  bit;
+  signal adderdp_i2_pi_0_62 :  bit;
+  signal adderdp_i2_pi_0_63 :  bit;
+  signal adderdp_i2_pi_0_7  :  bit;
+  signal adderdp_i2_pi_0_8  :  bit;
+  signal adderdp_i2_pi_0_9  :  bit;
+  signal adderdp_i2_pi_1_11 :  bit;
+  signal adderdp_i2_pi_1_13 :  bit;
+  signal adderdp_i2_pi_1_15 :  bit;
+  signal adderdp_i2_pi_1_17 :  bit;
+  signal adderdp_i2_pi_1_19 :  bit;
+  signal adderdp_i2_pi_1_21 :  bit;
+  signal adderdp_i2_pi_1_23 :  bit;
+  signal adderdp_i2_pi_1_25 :  bit;
+  signal adderdp_i2_pi_1_27 :  bit;
+  signal adderdp_i2_pi_1_29 :  bit;
+  signal adderdp_i2_pi_1_3  :  bit;
+  signal adderdp_i2_pi_1_31 :  bit;
+  signal adderdp_i2_pi_1_33 :  bit;
+  signal adderdp_i2_pi_1_35 :  bit;
+  signal adderdp_i2_pi_1_37 :  bit;
+  signal adderdp_i2_pi_1_39 :  bit;
+  signal adderdp_i2_pi_1_41 :  bit;
+  signal adderdp_i2_pi_1_43 :  bit;
+  signal adderdp_i2_pi_1_45 :  bit;
+  signal adderdp_i2_pi_1_47 :  bit;
+  signal adderdp_i2_pi_1_49 :  bit;
+  signal adderdp_i2_pi_1_5  :  bit;
+  signal adderdp_i2_pi_1_51 :  bit;
+  signal adderdp_i2_pi_1_53 :  bit;
+  signal adderdp_i2_pi_1_55 :  bit;
+  signal adderdp_i2_pi_1_57 :  bit;
+  signal adderdp_i2_pi_1_59 :  bit;
+  signal adderdp_i2_pi_1_61 :  bit;
+  signal adderdp_i2_pi_1_63 :  bit;
+  signal adderdp_i2_pi_1_7  :  bit;
+  signal adderdp_i2_pi_1_9  :  bit;
+  signal adderdp_i2_pi_2_10 :  bit;
+  signal adderdp_i2_pi_2_11 :  bit;
+  signal adderdp_i2_pi_2_14 :  bit;
+  signal adderdp_i2_pi_2_15 :  bit;
+  signal adderdp_i2_pi_2_18 :  bit;
+  signal adderdp_i2_pi_2_19 :  bit;
+  signal adderdp_i2_pi_2_22 :  bit;
+  signal adderdp_i2_pi_2_23 :  bit;
+  signal adderdp_i2_pi_2_26 :  bit;
+  signal adderdp_i2_pi_2_27 :  bit;
+  signal adderdp_i2_pi_2_30 :  bit;
+  signal adderdp_i2_pi_2_31 :  bit;
+  signal adderdp_i2_pi_2_34 :  bit;
+  signal adderdp_i2_pi_2_35 :  bit;
+  signal adderdp_i2_pi_2_38 :  bit;
+  signal adderdp_i2_pi_2_39 :  bit;
+  signal adderdp_i2_pi_2_42 :  bit;
+  signal adderdp_i2_pi_2_43 :  bit;
+  signal adderdp_i2_pi_2_46 :  bit;
+  signal adderdp_i2_pi_2_47 :  bit;
+  signal adderdp_i2_pi_2_50 :  bit;
+  signal adderdp_i2_pi_2_51 :  bit;
+  signal adderdp_i2_pi_2_54 :  bit;
+  signal adderdp_i2_pi_2_55 :  bit;
+  signal adderdp_i2_pi_2_58 :  bit;
+  signal adderdp_i2_pi_2_59 :  bit;
+  signal adderdp_i2_pi_2_6  :  bit;
+  signal adderdp_i2_pi_2_62 :  bit;
+  signal adderdp_i2_pi_2_63 :  bit;
+  signal adderdp_i2_pi_2_7  :  bit;
+  signal adderdp_i2_pi_3_12 :  bit;
+  signal adderdp_i2_pi_3_13 :  bit;
+  signal adderdp_i2_pi_3_14 :  bit;
+  signal adderdp_i2_pi_3_15 :  bit;
+  signal adderdp_i2_pi_3_20 :  bit;
+  signal adderdp_i2_pi_3_21 :  bit;
+  signal adderdp_i2_pi_3_22 :  bit;
+  signal adderdp_i2_pi_3_23 :  bit;
+  signal adderdp_i2_pi_3_28 :  bit;
+  signal adderdp_i2_pi_3_29 :  bit;
+  signal adderdp_i2_pi_3_30 :  bit;
+  signal adderdp_i2_pi_3_31 :  bit;
+  signal adderdp_i2_pi_3_36 :  bit;
+  signal adderdp_i2_pi_3_37 :  bit;
+  signal adderdp_i2_pi_3_38 :  bit;
+  signal adderdp_i2_pi_3_39 :  bit;
+  signal adderdp_i2_pi_3_44 :  bit;
+  signal adderdp_i2_pi_3_45 :  bit;
+  signal adderdp_i2_pi_3_46 :  bit;
+  signal adderdp_i2_pi_3_47 :  bit;
+  signal adderdp_i2_pi_3_52 :  bit;
+  signal adderdp_i2_pi_3_53 :  bit;
+  signal adderdp_i2_pi_3_54 :  bit;
+  signal adderdp_i2_pi_3_55 :  bit;
+  signal adderdp_i2_pi_3_60 :  bit;
+  signal adderdp_i2_pi_3_61 :  bit;
+  signal adderdp_i2_pi_3_62 :  bit;
+  signal adderdp_i2_pi_3_63 :  bit;
+  signal adderdp_i2_pi_4_24 :  bit;
+  signal adderdp_i2_pi_4_25 :  bit;
+  signal adderdp_i2_pi_4_26 :  bit;
+  signal adderdp_i2_pi_4_27 :  bit;
+  signal adderdp_i2_pi_4_28 :  bit;
+  signal adderdp_i2_pi_4_29 :  bit;
+  signal adderdp_i2_pi_4_30 :  bit;
+  signal adderdp_i2_pi_4_31 :  bit;
+  signal adderdp_i2_pi_4_40 :  bit;
+  signal adderdp_i2_pi_4_41 :  bit;
+  signal adderdp_i2_pi_4_42 :  bit;
+  signal adderdp_i2_pi_4_43 :  bit;
+  signal adderdp_i2_pi_4_44 :  bit;
+  signal adderdp_i2_pi_4_45 :  bit;
+  signal adderdp_i2_pi_4_46 :  bit;
+  signal adderdp_i2_pi_4_47 :  bit;
+  signal adderdp_i2_pi_4_56 :  bit;
+  signal adderdp_i2_pi_4_57 :  bit;
+  signal adderdp_i2_pi_4_58 :  bit;
+  signal adderdp_i2_pi_4_59 :  bit;
+  signal adderdp_i2_pi_4_60 :  bit;
+  signal adderdp_i2_pi_4_61 :  bit;
+  signal adderdp_i2_pi_4_62 :  bit;
+  signal adderdp_i2_pi_4_63 :  bit;
+  signal adderdp_i2_pi_5_48 :  bit;
+  signal adderdp_i2_pi_5_49 :  bit;
+  signal adderdp_i2_pi_5_50 :  bit;
+  signal adderdp_i2_pi_5_51 :  bit;
+  signal adderdp_i2_pi_5_52 :  bit;
+  signal adderdp_i2_pi_5_53 :  bit;
+  signal adderdp_i2_pi_5_54 :  bit;
+  signal adderdp_i2_pi_5_55 :  bit;
+  signal adderdp_i2_pi_5_56 :  bit;
+  signal adderdp_i2_pi_5_57 :  bit;
+  signal adderdp_i2_pi_5_58 :  bit;
+  signal adderdp_i2_pi_5_59 :  bit;
+  signal adderdp_i2_pi_5_60 :  bit;
+  signal adderdp_i2_pi_5_61 :  bit;
+  signal adderdp_i2_pi_5_62 :  bit;
+  signal adderdp_i2_pi_5_63 :  bit;
+  signal blockagenet        :  bit;
+  signal muxdp_i0_sel0      :  bit;
+  signal muxdp_i0_sel1      :  bit;
+  signal unconnected0       :  bit;
+  signal unconnected1       :  bit;
+  signal adderdp_i2_c       :  bit_vector(61 downto 0);
+  signal adderdp_i2_xorb    :  bit_vector(63 downto 0);
+  signal out_alu            :  bit_vector(63 downto 0);
+  signal out_mx             :  bit_vector(63 downto 0);
+  signal out_reg            :  bit_vector(63 downto 0);
+
+
+begin
+
+  muxdp_i0 : muxdp
+  port map ( cmd => sel
+           , i0  => a(63 downto 0)
+           , i1  => out_reg(63 downto 0)
+           , q   => out_mx(63 downto 0)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  accudp_i1 : accudp
+  port map ( ck  => clk
+           , wen => vdd
+           , i0  => out_alu(63 downto 0)
+           , q   => out_reg(63 downto 0)
+           , vdd => vdd
+           , vss => vss
+           );
+
+  adderdp_i2 : adderdp
+  port map ( add_sub => vss
+           , i0      => out_mx(63 downto 0)
+           , i1      => b(63 downto 0)
+           , c30     => unconnected0
+           , c31     => unconnected1
+           , q       => out_alu(63 downto 0)
+           , vdd     => vdd
+           , vss     => vss
+           );
+
+  buffdp_i3 : buffdp
+  port map ( i0  => out_reg(63 downto 0)
+           , q   => s(63 downto 0)
+           , vdd => vdd
+           , vss => vss
+           );
+
+end structural;
+
