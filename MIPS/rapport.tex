@@ -1,0 +1,82 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{float}
+\usepackage[top=3cm, bottom=3cm, left=3cm, right=3cm]{geometry}
+\usepackage{graphicx}
+\usepackage{array}
+
+\floatplacement{figure}{H}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\begin{document}
+\begin{titlepage}
+  \begin{center}
+    \textsc{\LARGE University Pierre et Marie Curie}\\[1.5cm]
+    \includegraphics[height=1cm]{upmc.png}\\[1.5cm]
+    \textsc{\Large Report VLSI 2 }\\[2cm]
+    \HRule \\[1cm]
+    \textsc{\huge Conception of a MIPS32 processor using cadence tools }\\[0.5cm]
+    \HRule \\[1cm]
+    % Author and supervisor
+    \noindent
+    \begin{minipage}[t]{0.55\textwidth}
+      \begin{flushleft} \large
+        \emph{Auteurs:}\\
+        Massine \textsc{BITAM}\\
+        Andres \textsc{BRAND}
+      \end{flushleft}
+    \end{minipage}%
+    \begin{minipage}[t]{0.47\textwidth}
+      \begin{flushright} \large
+        \emph{Encadrant:} \\
+        Mathieu \textsc{TUNA}
+      \end{flushright}
+    \end{minipage}
+    \vfill
+    % Bottom of the page
+    {\large \today}
+  \end{center}
+\end{titlepage}
+
+\section{synthesis}
+\subsection*{}TODO: explain what is the difference between best and worst.
+\subsection*{}In the synthesis step we need the worst case library, in this step we try to see our longer times in the most unfavorable cases, in order to see if RTL compiler can build a correct netlist (the one which respect the setup time) in the worst case, we don't care about the hold violations because we suppose that we have ideal clocks  (the rising edge arrives in the same moment for all the flops), the hold violations cheking is after the CTS step, this is the reason why only the setup time is important and we try to check that in the syntesis step in order to not having to slow the clocks in the P\&R step, there is another reason that we don't care about the hold time violation is that we could add buffers after.
+\subsection*{Elaborate}
+The elaborate command automatically elaborates the top-level design and all of its references. During elaboration, RTL Compiler performs the following tasks:
+\begin{itemize}
+\item Builds data structures.
+\item Infers registers in the design.
+\item Performs higher-level HDL optimization, such as dead code removal.
+\item Checks semantics.
+\end{itemize}
+After elaboration, RTL Compiler has an internally created data structure for the whole design so you can apply constraints and perform other operation.
+The elaboration is a step of synthesis.
+
+\subsection*{Check Design}
+the is the output of the check\_design command: (we omit the results with 0)\\
+Assigns => 1.\\
+Constant Port(s) => 1.\\
+Constant hierarchical Pin(s) => 3925.\\
+
+\subsection*{Check Design after synthesis}
+Assigns => 1.\\
+Constant Port(s) => 1.\\
+
+\subsection*{Reset}
+\subsection*{Reports}
+\subsubsection*{Area}
+\subsubsection*{Timing}
+
+The timing slack is the timing tha have a signal or need to arrives at the destination register. if it is positive it means that the signal arrives at the register on the right much earlier that is needed, so the circuit can work with a higher frequency clock, (we talk about the worst path), but if the slack is negative it means that the signal need more time to rich the register and we need to add buffer in the path or optimize the logic or tell the tool to do it for us.\\
+Unconstrained means that we haven't spécifie what is the clock frequency we would the circuit run, and what is the propagation dely of our input and output, so the tools can't stress the desgin to try to meet our critéria (the constraints).
+
+\subsubsection*{Datapath}
+
+In our desgin we have not use the clock gating technique to reduce power consumption so there is no spécéfic cell for that in the netlist.
+
+\section{Place \& route}
+
+\end{document}
