@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-
-
 from stratus import *
 import full_adder
 

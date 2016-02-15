@@ -1,23 +1,3 @@
-#!/usr/bin/env python
-#
-#    LIP6
-#    University Pierre & Marie Curie - UPMC
-#    4, place Jussieu 75252 Paris Cedex 05
-#    France
-#
-# +-----------------------------------------------------------------+
-# |                                                                 |
-# |                      M a s t e r   S E S I                      |
-# |                  U E   T O O L S  -  T M E   3                  |
-# |                                                                 |
-# |  Author  . . . . . . . . . . . . . . . . . .   Andres Brand     |
-# |  Status  . . . . . . . . . . . . . . . . . . . . .  "./add.py" |
-# |  Version   . . . . . . . . . . . . . . . . . . . . . . .   1.0  |
-# |  Date  . . . . . . . . . . . . . . . . . . .   October 30 2015  |
-# |                                                                 |
-# +-----------------------------------------------------------------+
-
-
 from stratus import *
 
 
